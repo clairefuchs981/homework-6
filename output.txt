@@ -1,0 +1,10 @@
+start vertex 0, end vertex 8, distance 14
+start vertex 5, end vertex 3, distance 14
+start vertex 1, end vertex 3, distance 15
+start vertex 6, end vertex 3, distance 16
+start vertex 7, end vertex 3, distance 17
+start vertex 8, end vertex 4, distance 18
+start vertex 0, end vertex 3, distance 19
+start vertex 0, end vertex 4, distance 21
+start vertex 8, end vertex 3, distance 22
+start vertex 1, end vertex 4, distance 22
