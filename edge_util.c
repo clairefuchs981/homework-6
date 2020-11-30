@@ -19,6 +19,8 @@ int edge_equals(void *key1, void *key2) {
 
 /* Function pointer for List; destroys an edge object. Nothing to destroy. */
 int edge_destroy(void *data) {
+    Edge *e = (Edge *) data;
+    free(e);
     return 0;
 }
 

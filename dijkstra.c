@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h> 
+#include <limits.h>
 #include "list.h"
 #include "dijkstra.h"
 #include "binary_min_heap.h"
@@ -42,7 +43,6 @@ void initialize_vertices(VertexList *v_list) {
     for (int i = 0; i < v_list->size; i++) {
         Vertex *curr = malloc(sizeof(Vertex));
         curr->index = i; 
-        curr->edges = malloc(sizeof(List));
         curr->edges = list_create(edge_str, edge_destroy, edge_equals);
         v_list->vertices[i] = curr;
     }
