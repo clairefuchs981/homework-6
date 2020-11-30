@@ -8,8 +8,6 @@
 #include "dijkstra.h"
 #include "binary_min_heap.h"
 
-
-
 /* Build binary min heap from list of vertices read in from input file */ 
 BinaryMinHeap* make_binary_min_heap(VertexList *v_list, int root_vertex) {
     BinaryMinHeap *min_heap = malloc(sizeof(BinaryMinHeap));
@@ -35,8 +33,9 @@ int size(BinaryMinHeap *min_heap) {
     return min_heap->size;
 }
 
-/* Check if heap is empty; empty when only the placeholder element at index 0 exists */
+/* Check if heap is empty */
 bool is_empty(BinaryMinHeap *min_heap) {
+    // min heap is empty when only the placeholder element at index 0 exists
     return min_heap->size == 1;
 }
 
@@ -61,7 +60,7 @@ int find_min_child(BinaryMinHeap *min_heap, int vertex) {
     }
 }
 
-/* Swap given vertex down the heap until swap fails, then break and terminate */
+/* Rebalance heap; Swap given vertex down the heap until swap fails, then break and terminate */
 void percolate_down(BinaryMinHeap *min_heap, int vertex) {
     while (vertex * 2 < min_heap->size) {
         int min_child = find_min_child(min_heap, vertex);
@@ -74,7 +73,7 @@ void percolate_down(BinaryMinHeap *min_heap, int vertex) {
     }
 }
 
-/* Delete minimum value in heap (root) then rebalance heap */
+/* Delete minimum value in heap (root), then rebalance heap */
 int del_min(BinaryMinHeap *min_heap) {
     Vertex *res = min_heap->elems[1];
     min_heap->size--;
@@ -86,7 +85,7 @@ int del_min(BinaryMinHeap *min_heap) {
     return res->index;
 }
 
-/* Swap vertex up the heap until swap fails, then break */
+/* Rebalance heap; Swap vertex up the heap until swap fails, then break */
 void percolate_up(BinaryMinHeap *min_heap, int vertex) {
     while (vertex / 2 > 0) {
         if (min_heap->elems[vertex]->weight < min_heap->elems[vertex / 2]->weight) {

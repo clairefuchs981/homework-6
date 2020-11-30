@@ -8,4 +8,4 @@ start vertex 3634, end vertex 6278, distance 184
 start vertex 644, end vertex 6290, distance 186
 start vertex 5720, end vertex 6278, distance 186
 start vertex 644, end vertex 6278, distance 192
-Input file: graph1.txt. Total time: 4.764000 seconds (0.079400 minutes). Average time per Dijkstra run: 0.000756.
+Input file: graph1.txt. Total time: 3.404000 seconds (0.056733 minutes). Average time per Dijkstra run: 0.000540.
