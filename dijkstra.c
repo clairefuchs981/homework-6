@@ -15,10 +15,9 @@
 
 /**
 TODO:
-3. valgrind, makefile (day 2) (marked)
-3.5 consider adding parallelization but not required 
-4. writeup, readme (day 2) (marked)
- */ 
+0. Results.txt & README.md
+1. Maybe add parallelization?
+*/ 
 
 
 /* For each vertex, print its id and all edges starting from it. */
