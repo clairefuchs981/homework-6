@@ -8,5 +8,5 @@ default: dijkstra dijkstra_parallel
 dijkstra: $(OBJ)
 	$(CC) -o dijkstra $(OBJ)
 
-dijkstra_parallel: $(OBJ)
-	$(CC) -o dijkstra $(OBJ)
+dijkstra_parallel: $(OBJP)
+	$(CC) -o dijkstra_parallel $(OBJP) -fopenmp

@@ -157,7 +157,10 @@ Edge** run_dijkstra(VertexList *v_list, int start_node) {
     }
     free(min_heap->elems);
     free(min_heap);
-    free_dijkstra_vertices(vertices, v_list->size);
+    for (int i = 0; i < v_list->size; i++) {
+      free(vertices[i]);
+    }
+    free(vertices);
     return longest_paths;
 }
 
@@ -184,7 +187,10 @@ void merge_longest_paths(Edge **paths, Edge **longest_paths) {
         longest_paths[i - start]->end_vertex = temp[i]->end_vertex;
     }
     // Free extra arrays
-    free_edge_list(paths, SAVED_PATHS);
+    for (int i = 0; i < SAVED_PATHS; i++) {
+      free(paths[i]);
+    }
+    free(paths);
     free(temp);
 }
 

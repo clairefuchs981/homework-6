@@ -142,6 +142,8 @@ int main(const int argc, const char** argv) {
     for (int i = 0; i < SAVED_PATHS; i++) {
         longest_paths[i] = malloc(sizeof(Edge));
         longest_paths[i]->weight = -1;
+        longest_paths[i]->start_vertex = -1;
+        longest_paths[i]->end_vertex = -1;
     }
     reset_vertices(v_list); // prep vertex list 
 
