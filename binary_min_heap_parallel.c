@@ -13,7 +13,7 @@ BinaryMinHeap* make_binary_min_heap(DijkstraVertex **vertices, int size, int roo
     BinaryMinHeap *min_heap = malloc(sizeof(BinaryMinHeap));
     // min heap will be stored as list with empty placeholder element at index 0
     // otherwise will contain pointers to vertices in the VertexList constructed from the input file
-    min_heap->elems = malloc(sizeof(Vertex *) * size + 1);
+    min_heap->elems = malloc(sizeof(DijkstraVertex *) * size + 1);
     min_heap->size = 2; // for root and empty placeholder at 0
     min_heap->elems[1] = vertices[root_vertex];
     return min_heap;

@@ -93,7 +93,7 @@ DijkstraVertex** prep_dijkstra_vertices(VertexList *v_list) {
     return vertices;
 }
 
-/* Creates a list of fake edges to be used as a placeholder for our longest edges list. This list will be
+/* Creates a list of fake edges to be used as a placeholders for our longest edges list. This list will be
    gradually updated by the threads to contain SAVED_PATHS longest edges */
 Edge** prep_longest_paths() {
     Edge **longest_paths = malloc(sizeof(Edge *) * SAVED_PATHS); // will store longest edges generated
@@ -211,7 +211,7 @@ int main(const int argc, const char** argv) {
  #pragma omp parallel \
     private(start_node)
     {
-    #pragma omp for schedule(static)
+    #pragma omp for schedule(dynamic)
     for (start_node = 0; start_node < v_list->size; start_node++) {
         Edge **paths = run_dijkstra(v_list, start_node);
         # pragma omp critical

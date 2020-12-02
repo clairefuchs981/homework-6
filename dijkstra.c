@@ -138,7 +138,7 @@ int main(const int argc, const char** argv) {
     /******** read in all vertices/edges *********/
     VertexList *v_list = malloc(sizeof(VertexList));
     read_in_file(v_list, argv[1], &n_nodes, &n_edges); // initialize vertex list
-    Edge **longest_paths = malloc(sizeof(Edge) * SAVED_PATHS); // will store longest edges generated
+    Edge **longest_paths = malloc(sizeof(Edge *) * SAVED_PATHS); // will store longest edges generated
     for (int i = 0; i < SAVED_PATHS; i++) {
         longest_paths[i] = malloc(sizeof(Edge));
         longest_paths[i]->weight = -1;
