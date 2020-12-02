@@ -106,22 +106,6 @@ Edge** prep_longest_paths() {
     return longest_paths;
 }
 
-/* Helper to free a list of Edges */
-void free_edge_list(Edge **paths, int size) {
-    for (int i = 0; i < size; i++) {
-        free(paths[i]);
-    }
-    free(paths);
-}
-
-/* Free array of DijksraVertices */
-void free_dijkstra_vertices(DijkstraVertex **vertices, int size) {
-    for (int i = 0; i < size; i++) {
-        free(vertices[i]);
-    }
-    free(vertices);
-}
-
 /* Run dijkstra's algorithm on the vertex at the given index. */ 
 Edge** run_dijkstra(VertexList *v_list, int start_node) {
     int original_node = start_node;
@@ -238,7 +222,10 @@ int main(const int argc, const char** argv) {
     fclose(output_file);
 
     /******** free everything *************/
-    free_edge_list(longest_paths, SAVED_PATHS);
+    for (int i = 0; i < SAVED_PATHS; i++) {
+        free(longest_paths[i]);
+    }
+    free(longest_paths);
     for (int i = 0; i < v_list->size; i++) {
         list_clear(v_list->vertices[i]->edges);
         free(v_list->vertices[i]->edges);

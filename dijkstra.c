@@ -13,12 +13,6 @@
 #define MAX_LINE_LENGTH 100 // max line length in input file
 #define SAVED_PATHS 10 // number of longest paths we save & write to output file
 
-/**
-TODO:
-1. Some last cleanup, readme, valgrind, makefile check etc
-*/ 
-
-
 /* For each vertex, print its id and all edges starting from it. */
 void print_vertices(VertexList *v_list) {
     for (int i = 0; i < v_list->size; i++) {
