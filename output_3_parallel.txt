@@ -1,0 +1,11 @@
+start vertex 100201, end vertex 133228, distance 101
+start vertex 100201, end vertex 45436, distance 101
+start vertex 41354, end vertex 139117, distance 101
+start vertex 46297, end vertex 36397, distance 101
+start vertex 100201, end vertex 92762, distance 102
+start vertex 41354, end vertex 36397, distance 102
+start vertex 100201, end vertex 139117, distance 102
+start vertex 100201, end vertex 92762, distance 102
+start vertex 100201, end vertex 36397, distance 103
+start vertex 100201, end vertex 36397, distance 103
+Input file: graph2.txt. Total time: 4649.172000 seconds (77.486200 minutes). Average time per Dijkstra run: 0.017530.

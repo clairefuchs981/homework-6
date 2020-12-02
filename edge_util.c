@@ -38,5 +38,7 @@ int sort_edges(const void * a, const void * b) {
     Edge *e2 = *((Edge **) b);
     if (e1->weight > e2->weight) return 1;
     else if (e1->weight < e2->weight) return -1;
+    if (e1->start_vertex > e2->start_vertex) return 1;
+    else if (e1->start_vertex < e2->start_vertex) return -1;
     else return 0;  
 }

@@ -15,8 +15,7 @@
 
 /**
 TODO:
-0. Results.txt & README.md
-1. Maybe add parallelization?
+1. Some last cleanup, readme, valgrind, makefile check etc
 */ 
 
 

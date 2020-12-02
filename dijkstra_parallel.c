@@ -8,7 +8,7 @@
 #include <omp.h>
 #include "list.h"
 #include "dijkstra.h"
-#include "binary_min_heap.h"
+#include "binary_min_heap_parallel.h"
 #include "edge_util.h"
 
 #define MAX_LINE_LENGTH 100 // max line length in input file
