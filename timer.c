@@ -1,5 +1,3 @@
-#ifndef TIMER_H
-#define TIMER_H
 #include "timer.h"
 struct timeval timerStart;
 
@@ -19,4 +17,3 @@ double GetTimer(){
   return timerElapsed.tv_sec*1000.0+timerElapsed.tv_usec/1000.0;
     
 }
-#endif
