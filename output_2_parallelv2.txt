@@ -1,0 +1,11 @@
+start vertex 644, end vertex 6188, distance 181
+start vertex 4193, end vertex 6278, distance 181
+start vertex 5995, end vertex 6278, distance 181
+start vertex 644, end vertex 6187, distance 183
+start vertex 4568, end vertex 6278, distance 183
+start vertex 645, end vertex 6278, distance 184
+start vertex 3634, end vertex 6278, distance 184
+start vertex 644, end vertex 6290, distance 186
+start vertex 5720, end vertex 6278, distance 186
+start vertex 644, end vertex 6278, distance 192
+Input file: graph1.txt. Total time: 0.862860 seconds (0.014381 minutes). Average time per Dijkstra run: 0.000137.
