@@ -16,7 +16,8 @@ December 6 2020 <br />
 > list.c / list.h - HW1 Code, unchanged <br/>
 > output_1_parallel.txt / output_1.txt - Results for running dijkstra_parallel and dijkstra executables on graph0.txt <br/> 
 > output_2_parallel.txt / output_2.txt - Results for running dijkstra_parallel and dijkstra executables on graph1.txt <br/> 
-> output_3_parallel.txt / output_3.txt - Results for running dijkstra_parallel and dijkstra executables on graph2.txt <br/> 
+> output_3_parallel.txt / output_3.txt - Results for running dijkstra_parallel and dijkstra executables on graph2.txt <br/>
+> timer .c / .h - Timer code taken from HW2 Boilerplate; needed to get accurate timings on linux cluster <br/>
 
 ## Performance Analysis 
 
@@ -53,7 +54,6 @@ Implementation notes: <br/>
 * dijkstra_parallel.c has a minor bug. I haven't fully tracked it, but I'm pretty confident that it is either in the function "merge_longest_paths" or "update_longest_paths". The finalized list of 10 longest paths sometimes contains duplicates after dijkstra_parallel.c executes. The behavior is flaky (though it should not be a race condition, since merge_longest_paths is a critical section). Output_3_parallel.txt shows this bug. The program always gets the correct weights (e.g. output_3_parallel should have four edges weighing 101, four weighing 102, and 2 weighting 103, and it does (and as does output_3.txt)). However, sometimes the start-vertices and end-vertices are duplicated. I'm assuming this is because the merge_longest_paths method is pretty sloppy, and is probably letting duplicates through now and then dependent on what local longest paths each thread creates and the order that the lists merge together. Not hugely worried about this; it's still getting the "right" answer as far as weights go, and it's not skipping any work so our time results should be unaffected. Will remove note if I fix bug.   
 * For correctness testing, I simply took a lot of known examples from tutorial pages ([like this](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/)) and put them in text files. These served as unit tests during initial development. I left graph0.txt in the repo as an example; it corresponds to the above url. Also, I used the brute force dijkstra algorithm originally provided on the hw README (still attached at the very bottom of this one) to generate answers for graph0.txt and graph1.txt. I used those to validate the correctness of the algorithm before running graph2.txt (of course, my computer couldn't handle running graph2.txt with the brute force method, so I'm more just trusting those results as correct).
 * The valgrind report for dijkstra_parallel.c won't be clean, since valgrind and openmp don't really understand each other. If you comment out the OpenMP code (all the pragmas and the omp_set_threads), you'll see that the valgrind report is clean, so just ignore anything that comes up from dijkstra_parallel. 
-* Since the timer just uses the clock() method, the results might not be quite right on the linux cluster. Will remove bullet when fixed.
 
 
 ## Code Shortcomings 

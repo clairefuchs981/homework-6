@@ -6,6 +6,7 @@
 #include <time.h> 
 #include <limits.h>
 #include <omp.h>
+#include <timer.h>
 #include "list.h"
 #include "dijkstra.h"
 #include "binary_min_heap_parallel.h"
@@ -183,7 +184,6 @@ void merge_longest_paths(Edge **paths, Edge **longest_paths) {
 int main(const int argc, const char** argv) {
     int n_nodes;                    // number of nodes in input file
     int n_edges;                    // number of edges in input file
-    clock_t start, end;             // to store start/end time of algorithm
     if (argc != 2) {
         printf("Usage: ./dijksta <input_file>.txt. Aborting.\n");
         return 1;
@@ -193,7 +193,7 @@ int main(const int argc, const char** argv) {
     read_in_file(v_list, argv[1], &n_nodes, &n_edges); // initialize vertex list
     Edge **longest_paths = prep_longest_paths();
 
-    start = clock();
+    StartTimer();
     /********** do dijkstra starting from each vertex **********/
     // parallelize dijkstra on the n vertices
     int start_node;
@@ -210,8 +210,7 @@ int main(const int argc, const char** argv) {
         }
     }
     }
-    end = clock();
-    double total_time = (double)(end-start)/ CLOCKS_PER_SEC;
+    const double total_time = GetTimer() / 1000.0;
     
     /******** print 10 longest to file ********/
     FILE *output_file = fopen("output.txt", "w");

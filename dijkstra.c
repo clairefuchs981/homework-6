@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <time.h> 
 #include <limits.h>
+#include "timer.h"
 #include "list.h"
 #include "dijkstra.h"
 #include "binary_min_heap.h"
@@ -124,7 +125,6 @@ void run_dijkstra(VertexList *v_list, int start_node, Edge **longest_paths) {
 int main(const int argc, const char** argv) {
     int n_nodes;                    // number of nodes in input file
     int n_edges;                    // number of edges in input file
-    clock_t start, end;             // to store start/end time of algorithm
     if (argc != 2) {
         printf("Usage: ./dijksta <input_file>.txt. Aborting.\n");
         return 1;
@@ -141,15 +141,14 @@ int main(const int argc, const char** argv) {
     }
     reset_vertices(v_list); // prep vertex list 
 
-    start = clock();
+    StartTimer();
     /********** do dijkstra starting from each vertex **********/
     for (int start_node = 0; start_node < v_list->size; start_node++) {
         run_dijkstra(v_list, start_node, longest_paths);
         //print_dijkstra_results(v_list, start_node); // uncomment to see dijkstra output
         reset_vertices(v_list);
     }
-    end = clock();
-    double total_time = (double)(end-start)/ CLOCKS_PER_SEC;
+    const double total_time = GetTimer() / 1000.0;
     
     /******** print 10 longest to file ********/
     FILE *output_file = fopen("output.txt", "w");
