@@ -8,4 +8,4 @@ start vertex 100201, end vertex 139117, distance 102
 start vertex 100201, end vertex 92762, distance 102
 start vertex 100201, end vertex 150246, distance 103
 start vertex 100201, end vertex 36397, distance 103
-Input file: graph2.txt. Total time: 1826.704241 seconds (30.445071 minutes). Average time per Dijkstra run: 0.006888.
+Input file: graph2.txt. Total time: 1822.180422 seconds (30.369674 minutes). Average time per Dijkstra run: 0.006871.

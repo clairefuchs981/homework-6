@@ -154,8 +154,6 @@ Edge** run_dijkstra(VertexList *v_list, int start_node) {
 void merge_longest_paths(Edge **paths, Edge **longest_paths) {
     // Brute force; create an array of size SAVED_PATHS * 2 and fill it with 
     // the current main list of longest paths and those local to the calling thread.
-    // Sort and take the top 10; this is our new longest paths list.
-    // NOTE: there is some bug here where occassionally duplicate edges get added. 
     int union_size = SAVED_PATHS * 2;
     Edge **temp = malloc(sizeof(Edge *) * union_size);
     for (int i = 0; i < SAVED_PATHS; i++) {
@@ -164,7 +162,16 @@ void merge_longest_paths(Edge **paths, Edge **longest_paths) {
     for (int i = SAVED_PATHS; i < union_size; i++) {
             temp[i] = paths[i - SAVED_PATHS];
     }
-    qsort(temp, union_size, sizeof(Edge *), sort_edges);
+    qsort(temp, union_size, sizeof(Edge *), sort_edges); // sort first time
+    // extra step; rarely needed but explicitly block duplicate edges to prevent bug
+    for (int i = 0; i < union_size - 1; i++) {
+        if (temp[i]->start_vertex == temp[i+1]->start_vertex && temp[i]->end_vertex == temp[i+1]->end_vertex) {
+            temp[i]->start_vertex = -1;
+            temp[i]->end_vertex = -1;
+            temp[i]->weight = -1;
+        }
+    }
+    qsort(temp, union_size, sizeof(Edge *), sort_edges); // sort again; top 10 are our new longest paths
     int start = union_size - 10 >= 0 ? union_size - 10 : 0;
     for (int i = start; i < union_size; i++) {
         longest_paths[i - start]->weight = temp[i]->weight;
