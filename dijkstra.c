@@ -71,6 +71,7 @@ void reset_vertices(VertexList *v_list) {
     for (int i = 0; i < v_list->size; i++) {
         v_list->vertices[i]->weight = INT_MAX;
         v_list->vertices[i]->in_heap = false;
+        v_list->vertices[i]->heap_index = -1;
     }
 }
 
@@ -111,6 +112,8 @@ void run_dijkstra(VertexList *v_list, int start_node, Edge **longest_paths) {
                 if (!v_list->vertices[end]->in_heap) { // add vertex to min heap if not already in it
                     insert(min_heap, v_list->vertices[end]);
                     v_list->vertices[end]->in_heap = true;
+                } else {
+                    update(min_heap, v_list->vertices[end]->heap_index);
                 }
             }
             head = head->next;

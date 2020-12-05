@@ -16,6 +16,7 @@ BinaryMinHeap* make_binary_min_heap(VertexList *v_list, int root_vertex) {
     min_heap->elems = malloc(sizeof(Vertex *) * v_list->size + 1);
     min_heap->size = 2; // for root and empty placeholder at 0
     min_heap->elems[1] = v_list->vertices[root_vertex];
+    min_heap->elems[1]->heap_index = 1;
     return min_heap;
 }
 
@@ -45,13 +46,15 @@ void swap_heap_elems(BinaryMinHeap *min_heap, int start, int end) {
         Vertex *temp = min_heap->elems[start];
         min_heap->elems[start] = min_heap->elems[end];
         min_heap->elems[end] = temp;
+        min_heap->elems[start]->heap_index = start;
+        min_heap->elems[end]->heap_index = end;
     }
 }  
 
 /* Find the minimum child of a node in the heap. The children are located an 2i and 2i+1 where i is the index
    of the node */
 int find_min_child(BinaryMinHeap *min_heap, int vertex) {
-    if (vertex * 2 + 1 > min_heap->size) {
+    if (vertex * 2 + 1 > min_heap->size - 1) {
         return vertex * 2;
     } else if (min_heap->elems[vertex * 2]->weight < min_heap->elems[vertex * 2 + 1]->weight) {
         return vertex * 2;
@@ -82,6 +85,7 @@ int del_min(BinaryMinHeap *min_heap) {
         min_heap->elems[1] = min_heap->elems[min_heap->size];
         percolate_down(min_heap, 1);
     }
+    res->heap_index = -1;
     return res->index;
 }
 
@@ -101,6 +105,13 @@ void percolate_up(BinaryMinHeap *min_heap, int vertex) {
 /* Insert new Vertex in the heap */
 void insert(BinaryMinHeap *min_heap, Vertex *vertex) {
     min_heap->elems[min_heap->size] = vertex;
+    vertex->heap_index = min_heap->size;
     percolate_up(min_heap, min_heap->size);
     min_heap->size++;
+}
+
+/* Runs when a vertex weight is updated, but element was already in heap. Attempt to readjust in either direction */
+void update(BinaryMinHeap *min_heap, int vertex) {
+    percolate_down(min_heap, vertex);
+    percolate_up(min_heap, vertex);
 }

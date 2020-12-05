@@ -89,6 +89,7 @@ DijkstraVertex** prep_dijkstra_vertices(VertexList *v_list) {
         curr->vertex = v_list->vertices[i];
         curr->weight = INT_MAX;
         curr->in_heap = false;
+        curr->heap_index = -1;
         vertices[i] = curr;
     }
     return vertices;
@@ -135,6 +136,8 @@ Edge** run_dijkstra(VertexList *v_list, int start_node) {
                 if (!vertices[end]->in_heap) { // add vertex to min heap if not already in it
                     insert(min_heap, vertices[end]);
                     vertices[end]->in_heap = true;
+                } else {
+                    update(min_heap, vertices[end]->heap_index);
                 }
             }
             head = head->next;

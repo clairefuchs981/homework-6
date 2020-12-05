@@ -16,4 +16,6 @@ bool is_empty(BinaryMinHeap *min_heap);
 int del_min(BinaryMinHeap *min_heap);
 /* Insert new Vertex in the heap */
 void insert(BinaryMinHeap *min_heap, Vertex *vertex);
+/* Runs when a vertex weight is updated, but element was already in heap. Attempt to readjust in either direction */
+void update(BinaryMinHeap *min_heap, int vertex);
 #endif

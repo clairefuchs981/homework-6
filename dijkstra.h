@@ -3,10 +3,11 @@
 #define DIJKSTRA_H
 // Vertex struct
 typedef struct vertex_ {
-    int   index;     // integer id for vertex
-    List *edges;     // list of Edges starting from this vertex
-    int   weight;    // weight of this vertex
-    bool  in_heap;   // true if vertex is currently in min_heap 
+    int   index;       // integer id for vertex
+    List *edges;       // list of Edges starting from this vertex
+    int   weight;      // weight of this vertex
+    bool  in_heap;     // true if vertex is currently in min_heap 
+    int   heap_index;  // current index in heap
 } Vertex;
 
 // Struct holding list of vertices 
