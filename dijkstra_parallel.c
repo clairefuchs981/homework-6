@@ -14,7 +14,6 @@
 
 #define MAX_LINE_LENGTH 100 // max line length in input file
 #define SAVED_PATHS 10 // number of longest paths we save & write to output file
-#define NUM_THREADS 20 // number of threads to use for computing dijkstra on each node
 
 /* For each vertex, print its id and all edges starting from it. */
 void print_vertices(VertexList *v_list) {
@@ -194,20 +193,22 @@ void merge_longest_paths(Edge **paths, Edge **longest_paths) {
 int main(const int argc, const char** argv) {
     int n_nodes;                    // number of nodes in input file
     int n_edges;                    // number of edges in input file
-    if (argc != 2) {
-        printf("Usage: ./dijksta <input_file>.txt. Aborting.\n");
+    int n_threads;
+    if (argc != 3) {
+        printf("Usage: ./dijksta <input_file>.txt nThreads. Aborting.\n");
         return 1;
     }
     /******** read in all vertices/edges *********/
     VertexList *v_list = malloc(sizeof(VertexList));
     read_in_file(v_list, argv[1], &n_nodes, &n_edges); // initialize vertex list
+    n_threads = atoi(argv[2]);
     Edge **longest_paths = prep_longest_paths();
 
     StartTimer();
     /********** do dijkstra starting from each vertex **********/
     // parallelize dijkstra on the n vertices
     int start_node;
-    omp_set_num_threads(NUM_THREADS); 
+    omp_set_num_threads(n_threads); 
  #pragma omp parallel \
     private(start_node)
     {
